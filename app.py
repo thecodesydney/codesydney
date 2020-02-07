@@ -2,7 +2,7 @@ from flask import Flask, render_template, g, request, session, redirect, url_for
 import sqlite3
 from os import path
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 #Database helper
 ROOT = path.dirname(path.realpath(__file__))
@@ -16,14 +16,14 @@ def get_db():
         g.sqlite_db = connect_db()
     return g.sqlite_db
 
-@app.route('/', methods=['POST', 'GET'])
+@application.route('/', methods=['POST', 'GET'])
 def index():
     db = get_db()
     return_values = []
     if request.method == 'POST':
         search_keywords = request.form['search']
         if search_keywords:
-            keywords = search_keywords.replace(" ", "*")
+            keywords = search_keywords + '*'
             details_cur = db.execute('SELECT ID, Name, Role, Projects, Certifications FROM talentsearch WHERE talentsearch MATCH ?', [keywords])                              
         else:
             details_cur = db.execute('SELECT ID, Name, Role, Projects, Certifications FROM talentsearch')            
@@ -44,4 +44,4 @@ def index():
     return render_template('index.html', return_values=return_values)
     
 if __name__ == '__main__':
-    app.run(debug=True)
+    application.run(debug=True)
