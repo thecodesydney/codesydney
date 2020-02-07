@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+<style>
+h1 {
+    font-family: 'Open Sans';
+    color: rgba(47, 86, 122, 0.932);
+    text-align: left;
+    font-size: 30px;
+}
+
+body {
+  font-family: 'Open Sans';
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: rgba(47, 86, 122, 0.932);
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: rgba(47, 86, 122, 0.932);
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<body>
+
+<h1>Code.Sydney Talents</h1>
+
+<form class="example" method="post">
+  <input type="text" placeholder="E.g. JavaScript" name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+<p>
+    {% if return_values %}
+        {% for item in return_values %}
+            {{ item }}
+            <br/>
+        {% endfor %}
+    {% endif %}
+</p>
+
+</body>
+</html>
